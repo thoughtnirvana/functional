@@ -30,6 +30,6 @@ Some utils taken from the book "The Ruby Programming Language 6.8 Functional Pro
     >> fact[10]
     => 3628800
 
-    # >> fib = +lambda {|n| return n if n <= 1; fib[n-1] + fib[n-2] }
-    # >> fib[100]
-    # => 354224848179261915075 
+    >> fib = +lambda {|n| return n if n <= 1; fib[n-1] + fib[n-2] }
+    >> fib[100]
+    => 354224848179261915075 
