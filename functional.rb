@@ -45,10 +45,14 @@ module Functional
   end
   alias << apply_tail
 
-  # doctest: Memoize.
+  # doctest: Memoize - factorial.
   # >> fact = +lambda {|n| return 1 if n <= 1; n * fact[n-1]}
   # >> fact[10]
   # 3628800
+  # doctest: Memoize - fibonacci.
+  # >> fib = +lambda {|n| return n if n <= 1; fib[n-1] + fib[n-2] }
+  # >> fib[100]
+  # => 354224848179261915075 
   def memoize
     cache = {}
     lambda {|*args|
