@@ -6,9 +6,9 @@ module Functional
   # 36
   def compose(f)
     if self.respond_to?(:arity) and self.arity == 1
-      lambda {|*args| self.call(f[*args]) }
+      lambda {|*args| self.call f[*args] }
     else
-      lambda {|*args| self.call(*f[*args]) }
+      lambda {|*args| self.call *f[*args] }
     end
   end
   alias * compose
@@ -20,9 +20,9 @@ module Functional
   # 26
   def pipe(func)
     if func.respond_to?(:arity) and func.arity == 1
-      lambda {|*args| func.call(self[*args]) }
+      lambda {|*args| func.call self[*args] }
     else
-      lambda {|*args| func.call(*self[*args]) }
+      lambda {|*args| func.call *self[*args] }
     end
   end
   alias | pipe
@@ -32,7 +32,7 @@ module Functional
   # >> (pow >> 10)[2]
   # 100
   def apply_head(*first)
-    lambda {|*rest| self.call(*first.concat(rest)) }
+    lambda {|*rest| self.call *first.concat(rest) }
   end
   alias >> apply_head
 
@@ -41,7 +41,7 @@ module Functional
   # >> (pow << 10)[2]
   # 1024
   def apply_tail(*last)
-    lambda {|*rest| self.call(*rest.concat(last)) }
+    lambda {|*rest| self.call *rest.concat(last) }
   end
   alias << apply_tail
 
