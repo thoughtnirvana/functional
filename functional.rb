@@ -52,10 +52,10 @@ module Functional
   def memoize
     cache = {}
     lambda {|*args|
-      unless cache.has_key?(args)
-        cache[args] = self.call(*args)
-      end
-      cache[args]
+      # Try to fetch the cached value.
+      # If key isn't there, make the function call
+      # and cache the value for future calls.
+      cache.fetch(args) { cache[args] = self.call(*args) }
     }
   end
   alias +@ memoize
