@@ -1,5 +1,8 @@
 ### Functional enhancements for ruby.
 
+Some utils taken from the book "The Ruby Programming Language 6.8 Functional Programming"
+
+
 #### Function composition.
     >> sqr = lambda {|x| x * x }
     >> inc = lambda {|x| x + 1 }
