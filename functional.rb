@@ -69,5 +69,11 @@ module Kernel
   alias m method
 end
 
+class Symbol
+  def +@
+    method(self)
+  end
+end
+
 class Proc; include Functional; end
 class Method; include Functional; end
