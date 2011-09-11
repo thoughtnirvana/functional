@@ -36,7 +36,7 @@ Some utils taken from the book "The Ruby Programming Language 6.8 Functional Pro
 
 ### Working with methods.
 
-I couldn't think on anything else other than patching the `Symbol` module and overloading `+@`.
+I couldn't think of anything else other than patching the `Symbol` module and overloading `+@`.
 
     >> def sqr(x)
     >>   x * x
