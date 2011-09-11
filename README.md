@@ -33,3 +33,25 @@ Some utils taken from the book "The Ruby Programming Language 6.8 Functional Pro
     >> fib = +lambda {|n| return n if n <= 1; fib[n-1] + fib[n-2] }
     >> fib[100]
     => 354224848179261915075 
+
+### Working with methods.
+
+I couldn't think on anything else other than patching the `Symbol` module and overloading `+@`.
+
+    >> def sqr(x)
+    >>   x * x
+    >> end
+
+    >> def inc(x);
+    >>   x + 1
+    >> end
+
+    >> (+:sqr | +:inc)[5]
+    => 26
+
+You can mix methods and lambdas.
+
+    >> negate = lambda {|x| -x }
+    >> (+:sqr | +:inc | negate)[5]
+    => -26
+
