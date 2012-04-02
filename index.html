@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Functional by thoughtnirvana</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/thoughtnirvana/functional">Fork On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/thoughtnirvana/functional/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/thoughtnirvana/functional/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Functional</h1>
+          <p>Functional enhancements for ruby.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/thoughtnirvana">thoughtnirvana</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/mattgraham">mattgraham</a></span>
+        </div>
+
+        <h3>Functional enhancements for ruby.</h3>
+
+<p>Some utils taken from the book "The Ruby Programming Language 6.8 Functional Programming"</p>
+
+<h4>Function composition.</h4>
+
+<pre><code>&gt;&gt; sqr = lambda {|x| x * x }
+&gt;&gt; inc = lambda {|x| x + 1 }
+&gt;&gt; (sqr * inc)[5]
+=&gt; 36
+</code></pre>
+
+<h4>Function piping.</h4>
+
+<pre><code>&gt;&gt; sqr = lambda {|x| x * x }
+&gt;&gt; inc = lambda {|x| x + 1 }
+&gt;&gt; (sqr | inc)[5]
+=&gt; 26
+</code></pre>
+
+<h4>Partial function - first arguments.</h4>
+
+<pre><code>&gt;&gt; pow = lambda {|x, y| x ** y }
+&gt;&gt; (pow &gt;&gt; 10)[2]
+=&gt; 100
+</code></pre>
+
+<h4>Partial function - last arguments.</h4>
+
+<pre><code>&gt;&gt; pow = lambda {|x, y| x ** y }
+&gt;&gt; (pow &lt;&lt; 10)[2]
+=&gt; 1024
+</code></pre>
+
+<h4>Memoize.</h4>
+
+<pre><code>&gt;&gt; fact = +lambda {|n| return 1 if n &lt;= 1; n * fact[n-1]}
+&gt;&gt; fact[10]
+=&gt; 3628800
+
+&gt;&gt; fib = +lambda {|n| return n if n &lt;= 1; fib[n-1] + fib[n-2] }
+&gt;&gt; fib[100]
+=&gt; 354224848179261915075 
+</code></pre>
+
+<h3>Working with methods.</h3>
+
+<p>I couldn't think of anything else other than patching the <code>Symbol</code> module and overloading <code>+@</code>.</p>
+
+<pre><code>&gt;&gt; def sqr(x)
+&gt;&gt;   x * x
+&gt;&gt; end
+
+&gt;&gt; def inc(x);
+&gt;&gt;   x + 1
+&gt;&gt; end
+
+&gt;&gt; (+:sqr | +:inc)[5]
+=&gt; 26
+</code></pre>
+
+<p>You can mix methods and lambdas.</p>
+
+<pre><code>&gt;&gt; negate = lambda {|x| -x }
+&gt;&gt; (+:sqr | +:inc | negate)[5]
+=&gt; -26
+</code></pre>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
